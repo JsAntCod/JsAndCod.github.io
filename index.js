@@ -15,11 +15,39 @@ canvas.height = 800;
 // ctx.stroke();
 //ctx.closePath();
 
-canvas_arrow(512, 400, 0, 400);
+class Vector {
+    constructor(fromx, fromy, tox, toy){
+        this.fromx = fromx;
+        this.fromy = fromy;
+        this.tox = tox;
+        this.toy = toy;
+        this.dx = tox - fromx;
+        this.dy = toy - fromy;
 
+    }
+
+    draw(){
+    const headlen = 10; // length of head in pixels
+    var angle = Math.atan2(this.dy, this.dx);
+    ctx.moveTo(this.fromx, this.fromy);
+    ctx.lineTo(this.tox, this.toy);
+    ctx.lineTo(this.tox - headlen * Math.cos(angle - Math.PI / 6), this.toy - headlen * Math.sin(angle - Math.PI / 6));
+    ctx.moveTo(this.tox, this.toy);
+    ctx.lineTo(this.tox - headlen * Math.cos(angle + Math.PI / 6), this.toy - headlen * Math.sin(angle + Math.PI / 6));
+    }
+
+
+}
+
+let vectornew = new Vector(0,0,600,200)
+let vectornew2 = new Vector(0,0,500,100)
+let vectornew3 = new Vector(0,0,400,50)
+vectornew.draw();
+vectornew2.draw();
+vectornew3.draw();
 ctx.stroke();
 
-function canvas_arrow(fromx, fromy, tox, toy) {
+/* function canvas_arrow(fromx, fromy, tox, toy) {
     var headlen = 10; // length of head in pixels
     var dx = tox - fromx;
     var dy = toy - fromy;
@@ -30,9 +58,11 @@ function canvas_arrow(fromx, fromy, tox, toy) {
     ctx.lineTo(tox - headlen * Math.cos(angle - Math.PI / 6), toy - headlen * Math.sin(angle - Math.PI / 6));
     ctx.moveTo(tox, toy);
     ctx.lineTo(tox - headlen * Math.cos(angle + Math.PI / 6), toy - headlen * Math.sin(angle + Math.PI / 6));
-  }
+    canvas_arrow();
+    ctx.stroke;
+  } */
 
-class Vector{
+/* class Vector{
     constructor(x,y){
         this._x = x,
         this._y = y
@@ -46,5 +76,5 @@ class Vector{
     }
 
 };
-
+ */
 

@@ -6,20 +6,47 @@ canvas.width= 1024;
 canvas.height = 800;
 
 addVector.addEventListener('click', addNewVector)
-
+let vectores = [];
+let firstVectorState = true;
+console.log(vectores)
 
 
 function addNewVector(){
+ 
+    if(firstVectorState === true){
+        let tox = prompt("Agregar valor en x")
+        let toy = prompt("Agregar valor en y")
+        vectores[0] = new Vector(0,0,tox,toy);
+        vectores[0].draw()
+        ctx.stroke()
+        console.log(vectores)
+        firstVectorState = false;
+    }else if(firstVectorState === false){
 
+            let i = 1;  
+            let tox = prompt("Agregar valor en x")
+            let toy = prompt("Agregar valor en y")
+            vector = new Vector(0,0,tox,toy);
+            vector.draw()
+            ctx.stroke()      
+            vectores.push(vector)
+            console.log(vectores)
+            console.log('holis') 
+            i++;
     
-    let vectores = [];
-    let tox = prompt("Agregar valor en x")
-    let toy = prompt("Agregar valor en y")
-    let vector = new Vector(0,0,tox,toy)
-    vector.draw()
-    ctx.stroke()
-    vectores.push(vector)
-    console.log(vectores)
+        
+        /* let tox = prompt("Agregar valor en x")
+        let toy = prompt("Agregar valor en y")
+        vectores[i] = new Vector(0,0,tox,toy);
+        vectores[i].draw()
+        ctx.stroke()
+        vectores.push(vectores[i])       
+        console.log(vectores)
+        console.log(i)
+        console.log('holis') 
+        i++; */
+    }
+
 
     
         
@@ -60,7 +87,7 @@ class Vector {
 }
 /*   Cuando se de un clic activar este evento
 let vector= [];
-for(let i=1; i<vector; i++){ 
+for(let i=1; i<=vector; i++){ 
     vector[i] = new Vector();
 } */
 

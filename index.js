@@ -1,9 +1,29 @@
-const canvas = document.querySelector('canvas')
-const ctx = canvas.getContext('2d')
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+const addVector = document.getElementById('add-vector');
 
 canvas.width= 1024;
 canvas.height = 800;
 
+addVector.addEventListener('click', addNewVector)
+
+
+
+function addNewVector(){
+
+    
+    let vectores = [];
+    let tox = prompt("Agregar valor en x")
+    let toy = prompt("Agregar valor en y")
+    let vector = new Vector(0,0,tox,toy)
+    vector.draw()
+    ctx.stroke()
+    vectores.push(vector)
+    console.log(vectores)
+
+    
+        
+}
 
 // ctx.lineWidth = 2;
 // ctx.beginPath()
@@ -38,15 +58,21 @@ class Vector {
 
 
 }
+/*   Cuando se de un clic activar este evento
+let vector= [];
+for(let i=1; i<vector; i++){ 
+    vector[i] = new Vector();
+} */
 
-let vectornew = new Vector(0,0,600,200)
-let vectornew2 = new Vector(0,0,500,100)
+
+/* let vectornew = new Vector(0,0,600,200)
+let vectornew2 = new Vector(0,0,1024,100)
 let vectornew3 = new Vector(0,0,400,50)
 vectornew.draw();
-vectornew2.draw();
+vectornew2.draw();  
 vectornew3.draw();
 ctx.stroke();
-
+ */
 /* function canvas_arrow(fromx, fromy, tox, toy) {
     var headlen = 10; // length of head in pixels
     var dx = tox - fromx;

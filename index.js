@@ -8,8 +8,9 @@ canvas.height = 800;
 addVector.addEventListener('click', addNewVector)
 let vectores = [];
 let firstVectorState = true;
+let secondVectorState = false;
 console.log(vectores)
-
+let i = 1;  
 
 function addNewVector(){
  
@@ -19,34 +20,34 @@ function addNewVector(){
         vectores[0] = new Vector(0,0,tox,toy);
         vectores[0].draw()
         ctx.stroke()
-        console.log(vectores)
         firstVectorState = false;
     }else if(firstVectorState === false){
 
-            let i = 1;  
+
+            if(i=>2 && secondVectorState=== true){
+                let tox = prompt("Agregar valor en x")
+                let toy = prompt("Agregar valor en y")
+                vector = new Vector(vectores[i-1].tox,vectores[i-1].toy,tox,toy);
+                vector.draw()
+                ctx.stroke()      
+                vectores.push(vector)
+                console.log(vectores)
+                console.log('else if 3') 
+                i++;
+            }
             let tox = prompt("Agregar valor en x")
             let toy = prompt("Agregar valor en y")
-            vector = new Vector(0,0,tox,toy);
+            vector = new Vector(vectores[i-1].tox,vectores[i-1].toy,tox,toy);
             vector.draw()
             ctx.stroke()      
             vectores.push(vector)
             console.log(vectores)
             console.log('holis') 
             i++;
-    
+            secondVectorState = true;
         
-        /* let tox = prompt("Agregar valor en x")
-        let toy = prompt("Agregar valor en y")
-        vectores[i] = new Vector(0,0,tox,toy);
-        vectores[i].draw()
-        ctx.stroke()
-        vectores.push(vectores[i])       
-        console.log(vectores)
-        console.log(i)
-        console.log('holis') 
-        i++; */
+    
     }
-
 
     
         
@@ -85,6 +86,8 @@ class Vector {
 
 
 }
+
+
 /*   Cuando se de un clic activar este evento
 let vector= [];
 for(let i=1; i<=vector; i++){ 

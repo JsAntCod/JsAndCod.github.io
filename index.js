@@ -8,9 +8,8 @@ canvas.height = 800;
 addVector.addEventListener('click', addNewVector)
 let vectores = [];
 let firstVectorState = true;
-let secondVectorState = false;
 console.log(vectores)
-let i = 1;  
+let iArray = 1;  
 
 function addNewVector(){
  
@@ -27,14 +26,13 @@ function addNewVector(){
             
             let tox = prompt("Agregar valor en x")
             let toy = prompt("Agregar valor en y")
-            vector = new Vector(vectores[i-1].tox,vectores[i-1].toy,tox,toy);
+            vector = new Vector(vectores[iArray-1].tox,vectores[iArray-1].toy,tox,toy);
             vector.draw()
             ctx.stroke()      
             vectores.push(vector)
             console.log(vectores)
             console.log('holis') 
-            i++;
-            secondVectorState = true;
+            iArray++;
         
     
     }

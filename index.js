@@ -24,17 +24,7 @@ function addNewVector(){
     }else if(firstVectorState === false){
 
 
-            if(i=>2 && secondVectorState=== true){
-                let tox = prompt("Agregar valor en x")
-                let toy = prompt("Agregar valor en y")
-                vector = new Vector(vectores[i-1].tox,vectores[i-1].toy,tox,toy);
-                vector.draw()
-                ctx.stroke()      
-                vectores.push(vector)
-                console.log(vectores)
-                console.log('else if 3') 
-                i++;
-            }
+            
             let tox = prompt("Agregar valor en x")
             let toy = prompt("Agregar valor en y")
             vector = new Vector(vectores[i-1].tox,vectores[i-1].toy,tox,toy);

@@ -7,6 +7,7 @@ canvas.height = 800;
 
 addVector.addEventListener('click', addNewVector)
 let vectores = [];
+let datosVectores =[];
 let firstVectorState = true;
 console.log(vectores)
 let iArray = 1;  
@@ -20,6 +21,26 @@ function addNewVector(){
         vectores[0].draw()
         ctx.stroke()
         firstVectorState = false;
+        
+        let tablecontents = "";
+            for (let i = 0; i < vectores.length; i++) {
+                tablecontents += "<tr>";
+                datosVectores.push(vectores[i].fromx)
+                datosVectores.push(vectores[i].fromy)
+                datosVectores.push(vectores[i].tox)
+                datosVectores.push(vectores[i].toy)
+                
+                    tablecontents += "<td>" + vectores[i].fromx + "</td>";
+                    tablecontents += "<td>" + vectores[i].fromy + "</td>";
+                    tablecontents += "<td>" + vectores[i].tox + "</td>";
+                    tablecontents += "<td>" + vectores[i].toy + "</td>";
+                
+                tablecontents += "</tr>";
+            }
+            document.getElementById('datos').innerHTML += tablecontents;
+            console.log()
+            
+
     }else if(firstVectorState === false){
 
 
@@ -33,6 +54,7 @@ function addNewVector(){
             console.log(vectores)
             console.log('holis') 
             iArray++;
+            
         
     
     }

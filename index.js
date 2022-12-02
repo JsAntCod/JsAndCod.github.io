@@ -38,8 +38,14 @@ ctx.moveTo(-300,0);
 function addNewVector(){
  
     if(firstVectorState === true){
-        let tox = prompt("Agregar valor en x")
-        let toy = prompt("Agregar valor en y")
+        let mag = prompt("Magnitud del vector")
+        let angli = prompt("Valor del angulo")
+        let radians = angli * ((Math.PI)/180);
+        let tox = mag*(Math.cos(radians))
+        let toy = mag*(Math.sin(radians))
+        console.log(radians)
+        console.log('Valor x ' + Math.cos(angli))
+        console.log('Valor y ' + Math.sin(angli))
         vectores[0] = new Vector(0,0,tox,-(toy));
         vectores[0].draw()
         ctx.stroke()

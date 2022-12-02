@@ -2,22 +2,45 @@ const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const addVector = document.getElementById('add-vector');
 
-canvas.width= 1024;
-canvas.height = 800;
+canvas.width= 800;
+canvas.height = 1000; 
 
 addVector.addEventListener('click', addNewVector)
 let vectores = [];
-let datosVectores =[];
+let datosVectores =[{
+    mag: 1,
+    ang: 1,
+    ax:'',
+    ay:''
+}];
 let firstVectorState = true;
 console.log(vectores)
 let iArray = 1;  
+ctx.translate(400,350)
+
+            
+// Catesian plane
+ctx.beginPath();
+ctx.moveTo(-300,0);
+            ctx.lineTo(300,0);
+            ctx.stroke();
+            ctx.moveTo(0,-300);
+            ctx.lineTo(0, 300);
+            ctx.stroke();     
+            
+            ctx.font = "12px Arial";
+            ctx.fillText("+ x",290, -10);
+            ctx.fillText("- y",10, 290);
+            
+            ctx.fillText("- x",-290, -10);
+            ctx.fillText("+ y",10, -290);  
 
 function addNewVector(){
  
     if(firstVectorState === true){
         let tox = prompt("Agregar valor en x")
         let toy = prompt("Agregar valor en y")
-        vectores[0] = new Vector(0,0,tox,toy);
+        vectores[0] = new Vector(0,0,tox,-(toy));
         vectores[0].draw()
         ctx.stroke()
         firstVectorState = false;
@@ -25,15 +48,16 @@ function addNewVector(){
         let tablecontents = "";
             for (let i = 0; i < vectores.length; i++) {
                 tablecontents += "<tr>";
-                datosVectores.push(vectores[i].fromx)
-                datosVectores.push(vectores[i].fromy)
-                datosVectores.push(vectores[i].tox)
-                datosVectores.push(vectores[i].toy)
+                /* datosVectores[i].mag.push("sorry")
+                datosVectores[i].ang.push("sorry") */
+                datosVectores[i].ax = vectores[i].tox
+                datosVectores[i].ay = vectores[i].toy
+                console.log(datosVectores)
                 
-                    tablecontents += "<td>" + vectores[i].fromx + "</td>";
-                    tablecontents += "<td>" + vectores[i].fromy + "</td>";
-                    tablecontents += "<td>" + vectores[i].tox + "</td>";
-                    tablecontents += "<td>" + vectores[i].toy + "</td>";
+                    tablecontents += "<td>" + datosVectores[i].mag + "</td>";
+                    tablecontents += "<td>" + datosVectores[i].ang + "</td>";
+                    tablecontents += "<td>" + datosVectores[i].ax + "</td>";
+                    tablecontents += "<td>" + datosVectores[i].ay + "</td>";
                 
                 tablecontents += "</tr>";
             }
@@ -47,7 +71,7 @@ function addNewVector(){
             
             let tox = prompt("Agregar valor en x")
             let toy = prompt("Agregar valor en y")
-            vector = new Vector(vectores[iArray-1].tox,vectores[iArray-1].toy,tox,toy);
+            vector = new Vector(vectores[iArray-1].tox,vectores[iArray-1].toy,tox,-(toy));
             vector.draw()
             ctx.stroke()      
             vectores.push(vector)

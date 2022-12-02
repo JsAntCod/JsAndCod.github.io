@@ -51,7 +51,7 @@ function addNewVector(){
                 /* datosVectores[i].mag.push("sorry")
                 datosVectores[i].ang.push("sorry") */
                 datosVectores[i].ax = vectores[i].tox
-                datosVectores[i].ay = vectores[i].toy
+                datosVectores[i].ay = -(vectores[i].toy)
                 console.log(datosVectores)
                 
                     tablecontents += "<td>" + datosVectores[i].mag + "</td>";

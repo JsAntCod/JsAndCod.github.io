@@ -16,6 +16,7 @@ let datosVectores =[{
 let firstVectorState = true;
 console.log(vectores)
 let iArray = 1;  
+let iDatos =1;
 ctx.translate(400,350)
 
             
@@ -80,42 +81,40 @@ function addNewVector(){
             
             let mag = prompt("Magnitud del vector")
             let ang= prompt("Valor del angulo")
-            console.log(ang)
             let radians = ang * ((Math.PI)/180);
-            console.log(radians)
-            
             let tox = mag*(Math.cos(radians))
             let toy = mag*(Math.sin(radians))
             let fTox = Math.trunc(tox)
             let fToy = Math.trunc(toy)
-        
+            let ax = fTox;
+            let ay = fToy
             let vector = new Vector(vectores[iArray-1].tox,vectores[iArray-1].toy,fTox +vectores[iArray-1].tox,-(fToy) + vectores[iArray-1].toy)
             vector.draw()
             ctx.stroke()      
             vectores.push(vector)
-            console.log(vectores)
-
             iArray++;
+            datosVectores.push({mag,ang,ax,ay})
+            console.log("datos de vectores ")
+            
             let tablecontents = "";
-            for (let i = 1; i < vectores.length; i++) {
-                console.log('hola')
-                datosVectores.mag = mag
-                datosVectores.ang = ang
-                datosVectores.ax = fTox
-                datosVectores.ay = fToy
+            
+                tablecontents += "<tr>";
+
+
+                
                 console.log(datosVectores)
                 
-                    tablecontents += "<td>" + datosVectores.mag + "</td>";
-                    tablecontents += "<td>" + datosVectores.ang + "</td>";
-                    tablecontents += "<td>" + datosVectores.ax + "</td>";
-                    tablecontents += "<td>" + datosVectores.ay + "</td>";
+                    tablecontents += "<td>" + datosVectores[iDatos].mag + "</td>";
+                    tablecontents += "<td>" + datosVectores[iDatos].ang + "</td>";
+                    tablecontents += "<td>" + datosVectores[iDatos].ax + "</td>";
+                    tablecontents += "<td>" + datosVectores[iDatos].ay + "</td>";
                 
-                
-            }
+                    tablecontents += "</tr>";
+            
             document.getElementById('datos').innerHTML += tablecontents;
            
             
-    
+            iDatos++;
     }
 
     

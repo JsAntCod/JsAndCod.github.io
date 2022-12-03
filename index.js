@@ -8,8 +8,8 @@ canvas.height = 1000;
 addVector.addEventListener('click', addNewVector)
 let vectores = [];
 let datosVectores =[{
-    mag: 1,
-    ang: 1,
+    mag: '',
+    ang: '' ,
     ax:'',
     ay:''
 }];
@@ -35,27 +35,26 @@ ctx.moveTo(-300,0);
             ctx.fillText("- x",-290, -10);
             ctx.fillText("+ y",10, -290);  
 
+            let tablecontents = "";
+
 function addNewVector(){
  
     if(firstVectorState === true){
         let mag = prompt("Magnitud del vector")
-        let angli = prompt("Valor del angulo")
-        let radians = angli * ((Math.PI)/180);
+        let ang = prompt("Valor del angulo")
+        let radians = ang * ((Math.PI)/180);
         let tox = mag*(Math.cos(radians))
         let toy = mag*(Math.sin(radians))
-        console.log(radians)
-        console.log('Valor x ' + Math.cos(angli))
-        console.log('Valor y ' + Math.sin(angli))
         vectores[0] = new Vector(0,0,tox,-(toy));
         vectores[0].draw()
         ctx.stroke()
         firstVectorState = false;
+
         
-        let tablecontents = "";
             for (let i = 0; i < vectores.length; i++) {
                 tablecontents += "<tr>";
-                /* datosVectores[i].mag.push("sorry")
-                datosVectores[i].ang.push("sorry") */
+                datosVectores[i].mag = mag
+                datosVectores[i].ang = ang
                 datosVectores[i].ax = vectores[i].tox
                 datosVectores[i].ay = -(vectores[i].toy)
                 console.log(datosVectores)
@@ -68,24 +67,44 @@ function addNewVector(){
                 tablecontents += "</tr>";
             }
             document.getElementById('datos').innerHTML += tablecontents;
-            console.log()
-            
+            console.log('quiubos' )
+            console.log(vectores)
 
     }else if(firstVectorState === false){
 
 
             
-            let tox = prompt("Agregar valor en x")
-            let toy = prompt("Agregar valor en y")
-            vector = new Vector(vectores[iArray-1].tox,vectores[iArray-1].toy,tox,-(toy));
+            let mag = prompt("Magnitud del vector")
+            let ang= prompt("Valor del angulo")
+            let radians = ang * ((Math.PI)/180);
+            let toxnew = mag*(Math.cos(radians))
+            let toynew = mag*(Math.sin(radians))
+            let vector = new Vector(vectores[iArray-1].tox,vectores[iArray-1].toy,toxnew,-(toynew));
             vector.draw()
             ctx.stroke()      
             vectores.push(vector)
             console.log(vectores)
-            console.log('holis') 
+
             iArray++;
+            let tablecontents = "";
+            for (let i = 1; i < vectores.length; i++) {
+                console.log('hola')
+                datosVectores.mag = mag
+                datosVectores.ang = ang
+                datosVectores.ax = toxnew
+                datosVectores.ay = toynew
+                console.log(datosVectores)
+                
+                    tablecontents += "<td>" + datosVectores.mag + "</td>";
+                    tablecontents += "<td>" + datosVectores.ang + "</td>";
+                    tablecontents += "<td>" + datosVectores.ax + "</td>";
+                    tablecontents += "<td>" + datosVectores.ay + "</td>";
+                
+                
+            }
+            document.getElementById('datos').innerHTML += tablecontents;
+           
             
-        
     
     }
 

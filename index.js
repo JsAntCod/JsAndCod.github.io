@@ -42,7 +42,9 @@ function addNewVector(){
     if(firstVectorState === true){
         let mag = prompt("Magnitud del vector")
         let ang = prompt("Valor del angulo")
+        console.log(ang)
         let radians = ang * ((Math.PI)/180);
+        console.log(radians)
         let tox = mag*(Math.cos(radians))
         let toy = mag*(Math.sin(radians))
         let fTox = Math.trunc(tox)
@@ -78,12 +80,16 @@ function addNewVector(){
             
             let mag = prompt("Magnitud del vector")
             let ang= prompt("Valor del angulo")
+            console.log(ang)
             let radians = ang * ((Math.PI)/180);
+            console.log(radians)
+            
             let tox = mag*(Math.cos(radians))
             let toy = mag*(Math.sin(radians))
             let fTox = Math.trunc(tox)
             let fToy = Math.trunc(toy)
-            let vector = new Vector(0,0,fTox,-(fToy));
+        
+            let vector = new Vector(vectores[iArray-1].tox,vectores[iArray-1].toy,fTox +vectores[iArray-1].tox,-(fToy) + vectores[iArray-1].toy)
             vector.draw()
             ctx.stroke()      
             vectores.push(vector)
@@ -140,7 +146,7 @@ class Vector {
     draw(){
     const headlen = 10; // length of head in pixels
     var angle = Math.atan2(this.dy, this.dx);
-    ctx.moveTo(this.fromx, this.fromy);
+    ctx.moveTo(this.fromx, this.fromy); 
     ctx.lineTo(this.tox, this.toy);
     ctx.lineTo(this.tox - headlen * Math.cos(angle - Math.PI / 6), this.toy - headlen * Math.sin(angle - Math.PI / 6));
     ctx.moveTo(this.tox, this.toy);

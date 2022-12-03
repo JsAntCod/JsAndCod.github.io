@@ -45,7 +45,9 @@ function addNewVector(){
         let radians = ang * ((Math.PI)/180);
         let tox = mag*(Math.cos(radians))
         let toy = mag*(Math.sin(radians))
-        vectores[0] = new Vector(0,0,tox,-(toy));
+        let fTox = Math.trunc(tox)
+        let fToy = Math.trunc(toy)
+        vectores[0] = new Vector(0,0,fTox,-(fToy));
         vectores[0].draw()
         ctx.stroke()
         firstVectorState = false;
@@ -77,9 +79,11 @@ function addNewVector(){
             let mag = prompt("Magnitud del vector")
             let ang= prompt("Valor del angulo")
             let radians = ang * ((Math.PI)/180);
-            let toxnew = mag*(Math.cos(radians))
-            let toynew = mag*(Math.sin(radians))
-            let vector = new Vector(vectores[iArray-1].tox,vectores[iArray-1].toy,toxnew,-(toynew));
+            let tox = mag*(Math.cos(radians))
+            let toy = mag*(Math.sin(radians))
+            let fTox = Math.trunc(tox)
+            let fToy = Math.trunc(toy)
+            let vector = new Vector(0,0,fTox,-(fToy));
             vector.draw()
             ctx.stroke()      
             vectores.push(vector)
@@ -91,8 +95,8 @@ function addNewVector(){
                 console.log('hola')
                 datosVectores.mag = mag
                 datosVectores.ang = ang
-                datosVectores.ax = toxnew
-                datosVectores.ay = toynew
+                datosVectores.ax = fTox
+                datosVectores.ay = fToy
                 console.log(datosVectores)
                 
                     tablecontents += "<td>" + datosVectores.mag + "</td>";
@@ -114,8 +118,8 @@ function addNewVector(){
 
 // ctx.lineWidth = 2;
 // ctx.beginPath()
-// ctx.moveTo(0,0);
-// ctx.lineTo(400, 600);
+// ctx.moveTo(200,0);
+// ctx.lineTo(0, 00);
 // ctx.stroke();
 // ctx.moveTo(400,600);
 // ctx.lineTo(1124,400)

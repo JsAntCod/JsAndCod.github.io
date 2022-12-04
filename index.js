@@ -3,21 +3,21 @@ const ctx = canvas.getContext('2d');
 const addVector = document.getElementById('add-vector');
 
 canvas.width= 800;
-canvas.height = 1000; 
+canvas.height = 800; 
 
 addVector.addEventListener('click', addNewVector)
 let vectores = [];
 let datosVectores =[{
-    mag: '',
-    ang: '' ,
-    ax:'',
-    ay:''
+    mag: 0,
+    ang: 0 ,
+    ax:0,
+    ay:0
 }];
 let firstVectorState = true;
 console.log(vectores)
 let iArray = 1;  
 let iDatos =1;
-ctx.translate(400,350)
+ctx.translate(300,310)
 
             
 // Catesian plane
@@ -78,7 +78,6 @@ function addNewVector(){
     }else if(firstVectorState === false){
 
 
-            
             let mag = prompt("Magnitud del vector")
             let ang= prompt("Valor del angulo")
             let radians = ang * ((Math.PI)/180);
@@ -120,6 +119,26 @@ function addNewVector(){
     
         
 }
+        
+/* Resultante */
+function resultante(){
+/* Suma para todas las componentes de x del vector */
+let sumX = 0;
+
+datosVectores.forEach(element => {
+  sumX += element.ax;
+});
+
+/* Suma para todas las componentes de y del vector */
+let sumY = 0;
+
+datosVectores.forEach(element => {
+  sumY += element.ay;
+});
+
+}
+    
+
 
 // ctx.lineWidth = 2;
 // ctx.beginPath()

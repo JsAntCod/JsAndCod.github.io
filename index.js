@@ -17,6 +17,8 @@ let firstVectorState = true;
 console.log(vectores)
 let iArray = 1;  
 let iDatos =1;
+let sumX = 0;
+let sumY = 0;
 ctx.translate(300,310)
 
             
@@ -123,14 +125,13 @@ function addNewVector(){
 /* Resultante */
 function resultante(){
 /* Suma para todas las componentes de x del vector */
-let sumX = 0;
+
 
 datosVectores.forEach(element => {
   sumX += element.ax;
 });
 
 /* Suma para todas las componentes de y del vector */
-let sumY = 0;
 
 datosVectores.forEach(element => {
   sumY += element.ay;

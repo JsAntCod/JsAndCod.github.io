@@ -1,11 +1,13 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const addVector = document.getElementById('add-vector');
+const resultanteVector = document.getElementById('resultante')
 
 canvas.width= 800;
 canvas.height = 800; 
 
 addVector.addEventListener('click', addNewVector)
+resultanteVector.addEventListener('click',resultante)
 let vectores = [];
 let datosVectores =[{
     mag: 0,
@@ -137,6 +139,10 @@ datosVectores.forEach(element => {
   sumY += element.ay;
 });
 
+/* Creación vector*/
+let vector = new Vector(0,0,sumX,-(sumY))
+vector.draw();
+ctx.stroke();
 }
     
 

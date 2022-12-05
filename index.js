@@ -2,12 +2,14 @@ const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const addVector = document.getElementById('add-vector');
 const resultanteVector = document.getElementById('resultante')
-
+let firstVectorState = true;
+let sumaState = false;
+let iArray = 1;  
+let iDatos =1;
+let sumX = 0;
+let sumY = 0;
 canvas.width= 800;
 canvas.height = 800; 
-
-addVector.addEventListener('click', addNewVector)
-resultanteVector.addEventListener('click',resultante,{once : true});  //Nota agregar boton de borrar vectores
 let vectores = [];
 let datosVectores =[{
     mag: 0,
@@ -15,17 +17,41 @@ let datosVectores =[{
     ax:0,
     ay:0
 }];
-let firstVectorState = true;
-let sumaState = false;
-let iArray = 1;  
-let iDatos =1;
-let sumX = 0;
-let sumY = 0;
-ctx.translate(330,310)
+
+class Vector {
+    constructor(fromx, fromy, tox, toy){
+        this.fromx = fromx;
+        this.fromy = fromy;
+        this.tox = tox;
+        this.toy = toy;
+        this.dx = tox - fromx;
+        this.dy = toy - fromy;
+
+    }
+
+    draw(){
+    const headlen = 8; // length of head in pixels
+    var angle = Math.atan2(this.dy, this.dx);
+    ctx.moveTo(this.fromx, this.fromy); 
+    ctx.lineTo(this.tox, this.toy);
+    ctx.lineTo(this.tox - headlen * Math.cos(angle - Math.PI / 6), this.toy - headlen * Math.sin(angle - Math.PI / 6));
+    ctx.moveTo(this.tox, this.toy);
+    ctx.lineTo(this.tox - headlen * Math.cos(angle + Math.PI / 6), this.toy - headlen * Math.sin(angle + Math.PI / 6));
+    }
+
+
+}
+
+addVector.addEventListener('click', addNewVector)
+resultanteVector.addEventListener('click',resultante,{once : true});  //Nota agregar boton de borrar vectores
+
+
+
  
 
             
 // Catesian plane
+ctx.translate(330,310)
 ctx.beginPath();
 ctx.moveTo(-300,0);
             ctx.lineTo(300,0);
@@ -160,29 +186,6 @@ sumaState = true;
 // ctx.stroke();
 //ctx.closePath();
 
-class Vector {
-    constructor(fromx, fromy, tox, toy){
-        this.fromx = fromx;
-        this.fromy = fromy;
-        this.tox = tox;
-        this.toy = toy;
-        this.dx = tox - fromx;
-        this.dy = toy - fromy;
-
-    }
-
-    draw(){
-    const headlen = 8; // length of head in pixels
-    var angle = Math.atan2(this.dy, this.dx);
-    ctx.moveTo(this.fromx, this.fromy); 
-    ctx.lineTo(this.tox, this.toy);
-    ctx.lineTo(this.tox - headlen * Math.cos(angle - Math.PI / 6), this.toy - headlen * Math.sin(angle - Math.PI / 6));
-    ctx.moveTo(this.tox, this.toy);
-    ctx.lineTo(this.tox - headlen * Math.cos(angle + Math.PI / 6), this.toy - headlen * Math.sin(angle + Math.PI / 6));
-    }
-
-
-}
 
 
 /*   Cuando se de un clic activar este evento

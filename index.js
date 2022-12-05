@@ -7,7 +7,7 @@ canvas.width= 800;
 canvas.height = 800; 
 
 addVector.addEventListener('click', addNewVector)
-resultanteVector.addEventListener('click',resultante)
+resultanteVector.addEventListener('click',resultante,{once : true});  //Nota agregar boton de borrar vectores
 let vectores = [];
 let datosVectores =[{
     mag: 0,
@@ -16,12 +16,13 @@ let datosVectores =[{
     ay:0
 }];
 let firstVectorState = true;
-console.log(vectores)
+let sumaState = false;
 let iArray = 1;  
 let iDatos =1;
 let sumX = 0;
 let sumY = 0;
-ctx.translate(300,310)
+ctx.translate(330,310)
+ 
 
             
 // Catesian plane
@@ -79,7 +80,7 @@ function addNewVector(){
             console.log('quiubos' )
             console.log(vectores)
 
-    }else if(firstVectorState === false){
+    }else if(firstVectorState === false && sumaState === false){
 
 
             let mag = prompt("Magnitud del vector")
@@ -143,6 +144,8 @@ datosVectores.forEach(element => {
 let vector = new Vector(0,0,sumX,-(sumY))
 vector.draw();
 ctx.stroke();
+
+sumaState = true;
 }
     
 
@@ -169,7 +172,7 @@ class Vector {
     }
 
     draw(){
-    const headlen = 10; // length of head in pixels
+    const headlen = 8; // length of head in pixels
     var angle = Math.atan2(this.dy, this.dx);
     ctx.moveTo(this.fromx, this.fromy); 
     ctx.lineTo(this.tox, this.toy);

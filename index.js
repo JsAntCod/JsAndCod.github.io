@@ -1,8 +1,10 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const addVector = document.getElementById('add-vector');
-const resultanteVector = document.getElementById('resultante')
+const resultanteVector = document.getElementById('resultante');
+const resultanteParalela = document.getElementById('resultante-paralela');
 let firstVectorState = true;
+let  path = false;
 let sumaState = false;
 let iArray = 1;  
 let iDatos =1;
@@ -10,10 +12,11 @@ let sumX = 0;
 let sumY = 0;
 canvas.width= 800;
 canvas.height = 800; 
+ctx.translate(330,310)
 let vectores = [];
 let datosVectores =[{
     mag: 0,
-    ang: 0 ,
+    ang: 0,
     ax:0,
     ay:0
 }];
@@ -39,20 +42,19 @@ class Vector {
     ctx.lineTo(this.tox - headlen * Math.cos(angle + Math.PI / 6), this.toy - headlen * Math.sin(angle + Math.PI / 6));
     }
 
-
 }
 
-addVector.addEventListener('click', addNewVector)
-resultanteVector.addEventListener('click',resultante,{once : true});  //Nota agregar boton de borrar vectores
 
+addVector.addEventListener('click', addNewVector)
+//resultanteVector.addEventListener('click',resultante,{once : true});  //Nota agregar boton de borrar vectores
+resultanteParalela.addEventListener('click',resultantePa); 
 
 
  
 
             
 // Catesian plane
-ctx.translate(330,310)
-ctx.beginPath();
+/* ctx.beginPath();
 ctx.moveTo(-300,0);
             ctx.lineTo(300,0);
             ctx.stroke();
@@ -65,7 +67,7 @@ ctx.moveTo(-300,0);
             ctx.fillText("- y",10, 290);
             
             ctx.fillText("- x",-290, -10);
-            ctx.fillText("+ y",10, -290);  
+            ctx.fillText("+ y",10, -290);   */
 
             let tablecontents = "";
 
@@ -105,6 +107,10 @@ function addNewVector(){
             document.getElementById('datos').innerHTML += tablecontents;
             console.log('quiubos' )
             console.log(vectores)
+
+    }else if((firstVectorState === false && sumaState === false) && vectores.length === 2){
+
+    alert("No se pueden agregar mas objetos")
 
     }else if(firstVectorState === false && sumaState === false){
 
@@ -173,7 +179,38 @@ ctx.stroke();
 
 sumaState = true;
 }
+
+function resultantePa(){
+
+
+    if(vectores.length === 0){
+        alert("Agrega primero un vector")
+    }else if(vectores.length == 1){
+        alert("Agrega otro vector para poder realizar la suma")
+    }else if((vectores.length === 2) && (path === true)){
+        alert("Ya ha realizado la suma de vectores")
+    }else if(vectores.length === 2){
+
+        resultante();
+
+        ctx.beginPath();
+        ctx.setLineDash([5, 5]);
+        ctx.moveTo((datosVectores[0].ax + datosVectores[1].ax ), -(datosVectores[0].ay + datosVectores[1].ay));
+        ctx.lineTo(datosVectores[1].ax ,-((datosVectores[0].ay + datosVectores[1].ay) - datosVectores[0].ay ) );
+        ctx.stroke();
     
+        ctx.beginPath();
+        ctx.setLineDash([5, 5]);
+        ctx.moveTo(datosVectores[1].ax , -((datosVectores[0].ay + datosVectores[1].ay) - datosVectores[0].ay));
+        ctx.lineTo(0, 0);
+        ctx.stroke();  
+        path = true;
+    }
+
+    
+}
+    
+
 
 
 // ctx.lineWidth = 2;

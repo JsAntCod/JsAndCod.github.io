@@ -2,9 +2,7 @@ const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const addVector = document.getElementById('add-vector');
 const resultanteVector = document.getElementById('resultante');
-const resultanteParalela = document.getElementById('resultante-paralela');
 let firstVectorState = true;
-let  path = false;
 let sumaState = false;
 let iArray = 1;  
 let iDatos =1;
@@ -46,15 +44,15 @@ class Vector {
 
 
 addVector.addEventListener('click', addNewVector)
-//resultanteVector.addEventListener('click',resultante,{once : true});  //Nota agregar boton de borrar vectores
-resultanteParalela.addEventListener('click',resultantePa); 
+resultanteVector.addEventListener('click',resultante);  //Nota agregar boton de borrar vectores
+
 
 
  
 
             
-// Catesian plane
-/* ctx.beginPath();
+//Catesian plane
+ctx.beginPath();
 ctx.moveTo(-300,0);
             ctx.lineTo(300,0);
             ctx.stroke();
@@ -67,7 +65,7 @@ ctx.moveTo(-300,0);
             ctx.fillText("- y",10, 290);
             
             ctx.fillText("- x",-290, -10);
-            ctx.fillText("+ y",10, -290);   */
+            ctx.fillText("+ y",10, -290);   
 
             let tablecontents = "";
 
@@ -108,9 +106,6 @@ function addNewVector(){
             console.log('quiubos' )
             console.log(vectores)
 
-    }else if((firstVectorState === false && sumaState === false) && vectores.length === 2){
-
-    alert("No se pueden agregar mas objetos")
 
     }else if(firstVectorState === false && sumaState === false){
 
@@ -159,56 +154,37 @@ function addNewVector(){
         
 /* Resultante */
 function resultante(){
-/* Suma para todas las componentes de x del vector */
-
-
-datosVectores.forEach(element => {
-  sumX += element.ax;
-});
-
-/* Suma para todas las componentes de y del vector */
-
-datosVectores.forEach(element => {
-  sumY += element.ay;
-});
-
-/* Creación vector*/
-let vector = new Vector(0,0,sumX,-(sumY))
-vector.draw();
-ctx.stroke();
-
-sumaState = true;
-}
-
-function resultantePa(){
-
 
     if(vectores.length === 0){
-        alert("Agrega primero un vector")
-    }else if(vectores.length == 1){
-        alert("Agrega otro vector para poder realizar la suma")
-    }else if((vectores.length === 2) && (path === true)){
-        alert("Ya ha realizado la suma de vectores")
-    }else if(vectores.length === 2){
+        alert("Agregue un vector")
+    }else if(vectores.length === 1){
+        alert("Agregue un vector mas para poder realizar una suma de vectores")
+    }else if(vectores.length >=2 && sumaState === false){
+    /* Suma para todas las componentes de x del vector */
 
-        resultante();
 
-        ctx.beginPath();
-        ctx.setLineDash([5, 5]);
-        ctx.moveTo((datosVectores[0].ax + datosVectores[1].ax ), -(datosVectores[0].ay + datosVectores[1].ay));
-        ctx.lineTo(datosVectores[1].ax ,-((datosVectores[0].ay + datosVectores[1].ay) - datosVectores[0].ay ) );
-        ctx.stroke();
-    
-        ctx.beginPath();
-        ctx.setLineDash([5, 5]);
-        ctx.moveTo(datosVectores[1].ax , -((datosVectores[0].ay + datosVectores[1].ay) - datosVectores[0].ay));
-        ctx.lineTo(0, 0);
-        ctx.stroke();  
-        path = true;
-    }
+    datosVectores.forEach(element => {
+    sumX += element.ax;
+    });
 
-    
+    /* Suma para todas las componentes de y del vector */
+
+    datosVectores.forEach(element => {
+    sumY += element.ay;
+    });
+
+    /* Creación vector*/
+    let vector = new Vector(0,0,sumX,-(sumY))
+    vector.draw();
+    ctx.stroke();
+
+    sumaState = true;
+}else{
+    alert("Ya ha realizado la suma de vectores, borre los vectores y vuelva a realizar otra suma")
 }
+};
+
+
     
 
 
@@ -270,4 +246,3 @@ ctx.stroke();
 
 };
  */
-

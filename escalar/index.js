@@ -295,6 +295,10 @@ escalarBPlus.addEventListener('click',()=>{
         byValue = bMag*(Math.sin(angBValue * ((Math.PI)/180)));
 
         update()
+        if(gridState===true){
+            gridState=false
+            showgrid()
+          }
         ctx.beginPath()
         mVecto1 = vector1(0,0,axValue,-ayValue)
         mVecto1.draw();

@@ -23,10 +23,7 @@ let datosVectores =[{
     ay:0
 }];
 
-let dmag;
-let dang;
-let dx;
-let dy;
+
 
 class Vector {
     constructor(fromx, fromy, tox, toy){
@@ -183,6 +180,11 @@ function resultante(){
     rang.innerHTML = Math.trunc(Math.tanh(sumY,sumX) * (180/Math.PI))
     rx.innerHTML = sumX;
     ry.innerHTML = sumY;
+
+
+    ctx.font = "12px Arial";
+    ctx.fillStyle = 'red'
+    ctx.fillText("R",(sumX/2), ((-sumY)/2) + 20);
 
 
     sumaState = true;

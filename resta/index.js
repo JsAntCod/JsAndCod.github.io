@@ -104,7 +104,6 @@ addVector.addEventListener('click', ()=>{
   }
 })
 
-
 function showgrid(){
   ctx.beginPath();
   if(gridState===false){
@@ -530,7 +529,7 @@ const vector3 = (fromx,fromy,tox,toy)=>({
   dx: tox - fromx,
   dy: toy - fromy,
   draw(){
-    const headlen = 15; // length of head in pixels
+    const headlen = 8; // length of head in pixels
     var angle = Math.atan2(this.dy,this.dx);
     ctx.moveTo(this.fromx,this.fromy); 
     ctx.lineTo(this.tox, this.toy);
@@ -540,7 +539,8 @@ const vector3 = (fromx,fromy,tox,toy)=>({
     ctx.stroke()   
 
     ctx.font = "12px Arial";
-    ctx.fillText("Resultante",(this.tox)-20, this.toy + 20);
+    ctx.fillStyle = 'red'
+    ctx.fillText("R",(this.tox/2), (this.toy/2) + 20);
   }
 });
 

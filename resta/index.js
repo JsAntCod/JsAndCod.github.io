@@ -14,10 +14,12 @@ const classAtribute = document.createAttribute('class')
 const addVector = document.getElementById('add-vector');
 let label = document.getElementById('label');
 let vectorBState = false;
+let botonRestar =false;
 let ax = document.querySelector("#ax");
 let ay = document.querySelector("#ay");
 let bx = document.querySelector("#bx");
 let by = document.querySelector("#by");
+let vectorR;
 let axValue = 100;
 let ayValue = 0;
 let bxValue = 100;
@@ -148,6 +150,19 @@ function showgrid(){
          mVector1 = vector1(0,0,axValue,-(ayValue));
          mVector1.draw();
         }
+
+        if(botonRestar===true){
+          update();
+          if(gridState===true){
+            gridState=false
+            showgrid()
+            }
+          ctx.beginPath();
+          mVector1.draw();
+          mVector2.draw();
+          vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
+          vectorR.draw();
+        }
       
     });
 
@@ -180,6 +195,19 @@ function showgrid(){
        mVector1 = vector1(0,0,axValue,-(ayValue));
        mVector1.draw();
       }
+
+      if(botonRestar===true){
+        update();
+        if(gridState===true){
+          gridState=false
+          showgrid()
+          }
+        ctx.beginPath();
+        mVector1.draw();
+        mVector2.draw();
+        vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
+        vectorR.draw();
+      }
     
     });
     plusAy.addEventListener("click", ()=>{
@@ -210,6 +238,19 @@ function showgrid(){
        ctx.moveTo(0,0)
        mVector1 = vector1(0,0,axValue,-(ayValue));
        mVector1.draw();
+      }
+
+      if(botonRestar===true){
+        update();
+        if(gridState===true){
+          gridState=false
+          showgrid()
+          }
+        ctx.beginPath();
+        mVector1.draw();
+        mVector2.draw();
+        vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
+        vectorR.draw();
       }
     });
 
@@ -243,6 +284,18 @@ function showgrid(){
         mVector1 = vector1(0,0,axValue,-(ayValue));
         mVector1.draw();
       }
+      if(botonRestar===true){
+        update();
+        if(gridState===true){
+          gridState=false
+          showgrid()
+          }
+        ctx.beginPath();
+        mVector1.draw();
+        mVector2.draw();
+        vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
+        vectorR.draw();
+      }
     });
     plusBx.addEventListener("click", ()=>{
       if(vectorBState ===true){
@@ -259,6 +312,18 @@ function showgrid(){
       mVector2.draw();
       }else{
         alert("No se ha agregado el vector B")
+      }
+      if(botonRestar===true){
+        update();
+        if(gridState===true){
+          gridState=false
+          showgrid()
+          }
+        ctx.beginPath();
+        mVector1.draw();
+        mVector2.draw();
+        vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
+        vectorR.draw();
       }
     });
     minusBx.addEventListener("click", ()=>{
@@ -277,6 +342,18 @@ function showgrid(){
         mVector2.draw();
         }else{
           alert("No se ha agregado el vector B")
+        }
+        if(botonRestar===true){
+          update();
+          if(gridState===true){
+            gridState=false
+            showgrid()
+            }
+          ctx.beginPath();
+          mVector1.draw();
+          mVector2.draw();
+          vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
+          vectorR.draw();
         }
     
     });
@@ -297,6 +374,18 @@ function showgrid(){
         mVector2.draw();
         }else{
           alert("No se ha agregado el vector B")
+        }
+        if(botonRestar===true){
+          update();
+          if(gridState===true){
+            gridState=false
+            showgrid()
+            }
+          ctx.beginPath();
+          mVector1.draw();
+          mVector2.draw();
+          vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
+          vectorR.draw();
         }
     
     
@@ -319,6 +408,19 @@ function showgrid(){
         }else{
           alert("No se ha agregado el vector B")
         }
+
+        if(botonRestar===true){
+          update();
+          if(gridState===true){
+            gridState=false
+            showgrid()
+            }
+          ctx.beginPath();
+          mVector1.draw();
+          mVector2.draw();
+          vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
+          vectorR.draw();
+        }
     
     });
   
@@ -329,4 +431,43 @@ function showgrid(){
 const update = ()=>{
   ctx.clearRect(-300,-300,canvas.width,canvas.height)
 }
+
+
+const vector3 = (fromx,fromy,tox,toy)=>({
+  fromx: fromy,
+  fromy:fromx,
+  tox:tox,
+  toy:toy,
+  dx: tox - fromx,
+  dy: toy - fromy,
+  draw(){
+    const headlen = 15; // length of head in pixels
+    var angle = Math.atan2(this.dy,this.dx);
+    ctx.moveTo(this.fromx,this.fromy); 
+    ctx.lineTo(this.tox, this.toy);
+    ctx.lineTo(this.tox - headlen * Math.cos(angle - Math.PI / 6), this.toy - headlen * Math.sin(angle - Math.PI / 6));
+    ctx.moveTo(this.tox, this.toy);
+    ctx.lineTo(this.tox - headlen * Math.cos(angle + Math.PI / 6), this.toy - headlen * Math.sin(angle + Math.PI / 6));
+    ctx.stroke()   
+
+    ctx.font = "12px Arial";
+    ctx.fillText("Resultante",(this.tox/2)-20, (this.toy/2) + 20);
+  }
+});
+
+const restar = document.getElementById('restar')
+
+restar.addEventListener('click',()=>{
+  if(vectorBState===false){
+    alert("Agregue un nuevo vector antes de restar")
+  }else{
+  botonRestar = true;
+  update();
+  ctx.beginPath();
+  mVector1.draw();
+  mVector2.draw();
+  vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
+  vectorR.draw();
+  }
+})
 

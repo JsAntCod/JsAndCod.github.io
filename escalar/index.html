@@ -23,60 +23,52 @@
 
           <div class="col-md-4" >
 
-            <button type="button" class="btn btn-outline-primary new-margin" id="add-vector">AddVector</button>
+            <button type="button" class="btn btn-outline-primary new-margin" id="add-vector">Agregar Vector</button>
             <div class="row">
               <div class="btn-group new-margin">
                 <a href="../index.html" class="btn btn-outline-primary" aria-current="page">a + b</a>
-                <a href="../resta/index.html" class="btn btn-outline-primary">a - b</a>
-                <a href="index.html" class="btn btn-outline-primary active">a x b</a>
+                <a href="index.html" class="btn btn-outline-primary">a - b</a>
+                <a href="../escalar/index.html" class="btn btn-outline-primary active">a x b</a>
+              </div>
+            </div>
+            
+            <div id="buttons" class="new-margin">
+                <input class="form-check-input" type="checkbox" value="" id="show-grid">
+                <label class="form-check-label" for="flexCheckIndeterminate" id="label">
+                  Plano cartesiano
+                </label>
+            </div>
+            <div>
+              <input class="form-check-input" type="checkbox" value="" id="restar">
+              <label class="form-check-label" for="flexCheckIndeterminate" id="label">
+                Vector resultante
+              </label>
+          </div>
+            
+
+
+            <div class="container text-center new-margin">
+              <div class="row row-cols-2">
+                <div class="col bg-primary.bg-gradient" id="ax-plus">+</div>
+                <div class="col" id="ay-plus">+</div>
+                <div class="col">|A|:<h6 id="am"></h6></div>
+                <div class="col">θ<sub>A</sub>: <h6 id="ay"></h6></div>
+                <div class="col" id="ax-minus">-</div>
+                <div class="col" id="ay-minus">-</div>
               </div>
             </div>
 
-            <h4 class="new-margin">Display Funcionalidades</h4>
+            <div class="container text-center new-margin">
+              <div class="row row-cols-2">
+                <div class="col" id="bx-plus">+</div>
+                <div class="col" id="by-plus">+</div>
+                <div class="col">|B|: <h6 id="bx"></h6></div>
+                <div class="col">θ<sub>B</sub>: <h6 id="by"></h6></div>
+                <div class="col" id="bx-minus">-</div>
+                <div class="col" id="by-minus">-</div>
+              </div>
+            </div>
 
-            <ul class="list-group new-margin">
-              <li class="list-group-item">
-                <input class="form-check-input me-1" type="checkbox" id="resultante-paralela" >
-                <label class="form-check-label" >Sumar vectores por paralelogramo</label>
-              </li>
-            </ul>
-
-
-            <table class="table new-margin "> 
-              <thead>
-                <tr  class="flecha">
-                  <th scope="col"><p>&rarr;</p></th>
-                  <th scope="col">θ</th>
-                  <th scope="col">a<sub>x</sub></th>
-                  <th scope="col">a<sub>y</sub></th>
-                </tr>
-              </thead>
-              <tbody id="datos">
-              
-              </tbody>
-            </table>
-
-            <h4 class="center invisible">Vector Resultante</h4>
-
-            <table class="table new-margin invisible">
-              <thead>
-                <tr  class="flecha">
-                  <th scope="col"><p>&rarr;</p></th>
-                  <th scope="col">θ</th>
-                  <th scope="col">a<sub>x</sub></th>
-                  <th scope="col">a<sub>y</sub></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td><p>a<sub>x</sub></td>
-                  <td><p>a<sub>y</sub></p></td>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         
         </div>

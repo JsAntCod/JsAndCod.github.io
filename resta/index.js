@@ -19,11 +19,22 @@ let ax = document.querySelector("#ax");
 let ay = document.querySelector("#ay");
 let bx = document.querySelector("#bx");
 let by = document.querySelector("#by");
+let mag = document.getElementById('mag-r');
+let ang =document.getElementById('ang-r');
+let rx =document.getElementById('rx');
+let ry =document.getElementById('ry');
 let vectorR;
 let axValue = 100;
 let ayValue = 0;
 let bxValue = 100;
 let byValue = 0;
+let magValue = 0;
+let angValue = 0;
+let rxValue = 0;
+let ryValue= 0;
+
+
+
 let gridState = false;
 let mVector2;
 canvas.width= 800;
@@ -34,6 +45,11 @@ ctx.translate(330,310)
   ay.innerText = ayValue;
   bx.innerText = 0;
   by.innerText = byValue
+
+  mag.innerHTML = magValue;
+  ang.innerHTML = angValue;
+  rx.innerHTML = rxValue;
+  ry.innerHTML = rxValue;
 
   const vector1 = (fromx,fromy,tox,toy) =>({
     fromx: fromx,
@@ -162,6 +178,17 @@ function showgrid(){
           mVector2.draw();
           vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
           vectorR.draw();
+
+          
+          rxValue = axValue-bxValue;
+          ryValue = (-ayValue)-(-byValue);
+          angValue = Math.trunc(-(Math.atan2(ryValue,rxValue)*(180/(Math.PI))));
+          magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+
+          rx.innerHTML = rxValue;
+          ry.innerHTML = ryValue;
+          ang.innerHTML = angValue;
+          mag.innerHTML = magValue;
         }
       
     });
@@ -207,6 +234,15 @@ function showgrid(){
         mVector2.draw();
         vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
         vectorR.draw();
+        rxValue = axValue-bxValue;
+          ryValue = (-ayValue)-(-byValue);
+          angValue = Math.trunc(-(Math.atan2(ryValue,rxValue)*(180/(Math.PI))));
+          magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+
+          rx.innerHTML = rxValue;
+          ry.innerHTML = ryValue;
+          ang.innerHTML = angValue;
+          mag.innerHTML = magValue;
       }
     
     });
@@ -251,6 +287,15 @@ function showgrid(){
         mVector2.draw();
         vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
         vectorR.draw();
+        rxValue = axValue-bxValue;
+          ryValue = (-ayValue)-(-byValue);
+          angValue = Math.trunc(-(Math.atan2(ryValue,rxValue)*(180/(Math.PI))));
+          magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+
+          rx.innerHTML = rxValue;
+          ry.innerHTML = ryValue;
+          ang.innerHTML = angValue;
+          mag.innerHTML = magValue;
       }
     });
 
@@ -295,6 +340,15 @@ function showgrid(){
         mVector2.draw();
         vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
         vectorR.draw();
+        rxValue = axValue-bxValue;
+          ryValue = (-ayValue)-(-byValue);
+          angValue = Math.trunc(-(Math.atan2(ryValue,rxValue)*(180/(Math.PI))));
+          magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+
+          rx.innerHTML = rxValue;
+          ry.innerHTML = ryValue;
+          ang.innerHTML = angValue;
+          mag.innerHTML = magValue;
       }
     });
     plusBx.addEventListener("click", ()=>{
@@ -324,6 +378,15 @@ function showgrid(){
         mVector2.draw();
         vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
         vectorR.draw();
+        rxValue = axValue-bxValue;
+          ryValue = (-ayValue)-(-byValue);
+          angValue = Math.trunc(-(Math.atan2(ryValue,rxValue)*(180/(Math.PI))));
+          magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+
+          rx.innerHTML = rxValue;
+          ry.innerHTML = ryValue;
+          ang.innerHTML = angValue;
+          mag.innerHTML = magValue;
       }
     });
     minusBx.addEventListener("click", ()=>{
@@ -354,6 +417,15 @@ function showgrid(){
           mVector2.draw();
           vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
           vectorR.draw();
+          rxValue = axValue-bxValue;
+          ryValue = (-ayValue)-(-byValue);
+          angValue = Math.trunc(-(Math.atan2(ryValue,rxValue)*(180/(Math.PI))));
+          magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+
+          rx.innerHTML = rxValue;
+          ry.innerHTML = ryValue;
+          ang.innerHTML = angValue;
+          mag.innerHTML = magValue;
         }
     
     });
@@ -386,6 +458,15 @@ function showgrid(){
           mVector2.draw();
           vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
           vectorR.draw();
+          rxValue = axValue-bxValue;
+          ryValue = (-ayValue)-(-byValue);
+          angValue = Math.trunc(-(Math.atan2(ryValue,rxValue)*(180/(Math.PI))));
+          magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+
+          rx.innerHTML = rxValue;
+          ry.innerHTML = ryValue;
+          ang.innerHTML = angValue;
+          mag.innerHTML = magValue;
         }
     
     
@@ -420,6 +501,15 @@ function showgrid(){
           mVector2.draw();
           vectorR = vector3(0,0,axValue-bxValue,(-ayValue)-(-byValue));
           vectorR.draw();
+          rxValue = axValue-bxValue;
+          ryValue = (-ayValue)-(-byValue);
+          angValue = Math.trunc(-(Math.atan2(ryValue,rxValue)*(180/(Math.PI))));
+          magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+
+          rx.innerHTML = rxValue;
+          ry.innerHTML = ryValue;
+          ang.innerHTML = angValue;
+          mag.innerHTML = magValue;
         }
     
     });
@@ -451,7 +541,7 @@ const vector3 = (fromx,fromy,tox,toy)=>({
     ctx.stroke()   
 
     ctx.font = "12px Arial";
-    ctx.fillText("Resultante",(this.tox/2)-20, (this.toy/2) + 20);
+    ctx.fillText("Resultante",(this.tox)-20, this.toy + 20);
   }
 });
 

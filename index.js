@@ -181,7 +181,6 @@ function resultante(){
     rx.innerHTML = sumX;
     ry.innerHTML = sumY;
 
-
     ctx.font = "12px Arial";
     ctx.fillStyle = 'red'
     ctx.fillText("R",(sumX/2), ((-sumY)/2) + 20);

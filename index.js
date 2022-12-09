@@ -2,6 +2,10 @@ const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const addVector = document.getElementById('add-vector');
 const resultanteVector = document.getElementById('resultante');
+let rmag= document.getElementById('mag')
+let rang= document.getElementById('ang')
+let rx= document.getElementById('rx')
+let ry= document.getElementById('ry')
 let firstVectorState = true;
 let sumaState = false;
 let iArray = 1;  
@@ -9,7 +13,7 @@ let iDatos =1;
 let sumX = 0;
 let sumY = 0;
 canvas.width= 800;
-canvas.height = 800; 
+canvas.height = 650; 
 ctx.translate(330,310)
 let vectores = [];
 let datosVectores =[{
@@ -18,6 +22,11 @@ let datosVectores =[{
     ax:0,
     ay:0
 }];
+
+let dmag;
+let dang;
+let dx;
+let dy;
 
 class Vector {
     constructor(fromx, fromy, tox, toy){
@@ -44,7 +53,7 @@ class Vector {
 
 
 addVector.addEventListener('click', addNewVector)
-resultanteVector.addEventListener('click',resultante);  //Nota agregar boton de borrar vectores
+resultanteVector.addEventListener('click',resultante); 
 
 
 
@@ -74,9 +83,7 @@ function addNewVector(){
     if(firstVectorState === true){
         let mag = prompt("Magnitud del vector")
         let ang = prompt("Valor del angulo")
-        console.log(ang)
         let radians = ang * ((Math.PI)/180);
-        console.log(radians)
         let tox = mag*(Math.cos(radians))
         let toy = mag*(Math.sin(radians))
         let fTox = Math.trunc(tox)
@@ -93,7 +100,6 @@ function addNewVector(){
                 datosVectores[i].ang = ang
                 datosVectores[i].ax = vectores[i].tox
                 datosVectores[i].ay = -(vectores[i].toy)
-                console.log(datosVectores)
                 
                     tablecontents += "<td>" + datosVectores[i].mag + "</td>";
                     tablecontents += "<td>" + datosVectores[i].ang + "</td>";
@@ -103,8 +109,6 @@ function addNewVector(){
                 tablecontents += "</tr>";
             }
             document.getElementById('datos').innerHTML += tablecontents;
-            console.log('quiubos' )
-            console.log(vectores)
 
 
     }else if(firstVectorState === false && sumaState === false){
@@ -125,15 +129,10 @@ function addNewVector(){
             vectores.push(vector)
             iArray++;
             datosVectores.push({mag,ang,ax,ay})
-            console.log("datos de vectores ")
             
             let tablecontents = "";
             
                 tablecontents += "<tr>";
-
-
-                
-                console.log(datosVectores)
                 
                     tablecontents += "<td>" + datosVectores[iDatos].mag + "</td>";
                     tablecontents += "<td>" + datosVectores[iDatos].ang + "</td>";
@@ -146,6 +145,8 @@ function addNewVector(){
            
             
             iDatos++;
+    }else if(sumaState === true){
+        alert("No se pueden agregar mas vectores")
     }
 
     
@@ -178,6 +179,12 @@ function resultante(){
     vector.draw();
     ctx.stroke();
 
+    rmag.innerHTML = Math.trunc(Math.sqrt((sumX**2)+((-sumY)**2)));
+    rang.innerHTML = Math.trunc(Math.tanh(sumY,sumX) * (180/Math.PI))
+    rx.innerHTML = sumX;
+    ry.innerHTML = sumY;
+
+
     sumaState = true;
 }else{
     alert("Ya ha realizado la suma de vectores, borre los vectores y vuelva a realizar otra suma")
@@ -187,62 +194,3 @@ function resultante(){
 
     
 
-
-
-// ctx.lineWidth = 2;
-// ctx.beginPath()
-// ctx.moveTo(200,0);
-// ctx.lineTo(0, 00);
-// ctx.stroke();
-// ctx.moveTo(400,600);
-// ctx.lineTo(1124,400)
-// ctx.stroke();
-//ctx.closePath();
-
-
-
-/*   Cuando se de un clic activar este evento
-let vector= [];
-for(let i=1; i<=vector; i++){ 
-    vector[i] = new Vector();
-} */
-
-
-/* let vectornew = new Vector(0,0,600,200)
-let vectornew2 = new Vector(0,0,1024,100)
-let vectornew3 = new Vector(0,0,400,50)
-vectornew.draw();
-vectornew2.draw();  
-vectornew3.draw();
-ctx.stroke();
- */
-/* function canvas_arrow(fromx, fromy, tox, toy) {
-    var headlen = 10; // length of head in pixels
-    var dx = tox - fromx;
-    var dy = toy - fromy;
-    var angle = Math.atan2(dy, dx);
-    console.log(angle)
-    ctx.moveTo(fromx, fromy);
-    ctx.lineTo(tox, toy);
-    ctx.lineTo(tox - headlen * Math.cos(angle - Math.PI / 6), toy - headlen * Math.sin(angle - Math.PI / 6));
-    ctx.moveTo(tox, toy);
-    ctx.lineTo(tox - headlen * Math.cos(angle + Math.PI / 6), toy - headlen * Math.sin(angle + Math.PI / 6));
-    canvas_arrow();
-    ctx.stroke;
-  } */
-
-/* class Vector{
-    constructor(x,y){
-        this._x = x,
-        this._y = y
-    }
-    
-    draw(){
-        ctx.beginPath()
-        ctx.moveTo(0,0);
-        ctx.lineTo(this._x,this._y);
-        ctx.stroke();
-    }
-
-};
- */

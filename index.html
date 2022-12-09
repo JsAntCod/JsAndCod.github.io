@@ -26,7 +26,7 @@
             <button type="button" class="btn btn-outline-primary new-margin" id="add-vector">AddVector</button>
             <div class="row">
               <div class="btn-group new-margin" role="group" aria-label="Basic outlined example">
-                <button type="button" class="btn btn-outline-primary">a + b</button>
+                <button type="button" class="btn btn-outline-primary active">a + b</button>
                 <button type="button" class="btn btn-outline-primary">a - b</button>
                 <button type="button" class="btn btn-outline-primary">a x b</button>
               </div>
@@ -56,29 +56,64 @@
               </tbody>
             </table>
 
-            <h4 class="center invisible">Vector Resultante</h4>
+            <h4 class="center ">Vector Resultante</h4>
 
-            <table class="table new-margin invisible">
+            <table class="table new-margin ">
               <thead>
                 <tr  class="flecha">
-                  <th scope="col"><p>&rarr;</p></th>
-                  <th scope="col">θ</th>
-                  <th scope="col">a<sub>x</sub></th>
-                  <th scope="col">a<sub>y</sub></th>
+                  <th scope="col"><p>&rarr;</p> R</th>
+                  <th scope="col">R<sub>θ</sub></th>
+                  <th scope="col">R<sub>x</sub></th>
+                  <th scope="col">R<sub>y</sub></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td><p>a<sub>x</sub></td>
-                  <td><p>a<sub>y</sub></p></td>
+                  <td id="mag"></td>
+                  <td id="ang"></td>
+                  <td id="rx"></td>
+                  <td id="ry"></td>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
         
+        </div>
+        
+        <div class="row">
+          <div class="col-md-3">
+            <a href="index.html"> <p class="text-center">
+              Poligono
+            </p></a>
+            <a href="index.html"><img src="img/poligono.png"></a>
+            
+          </div>
+          <div class="col-md-3">
+            <a href="paralelogramo/index.html"> <p class="text-center">
+              Paralelogramo
+            </p></a>
+            <a href="paralelogramo/index.html"><img src="img/paralelogramo.jpeg" alt=""></a>
+            
+          </div>
+          <div class="col-md-3">
+            <a href="resta/index.html"><p class="text-center">
+              Resta
+            </p></a>
+            
+            <a href="resta/index.html"> <img src="img/resta.png" alt=""></a>
+           
+          </div>
+          <div class="col-md-3">
+            <a href="escalar/index.html"><p class="text-center">
+              Escalar
+            </p></a>
+            
+            <a href="escalar/index.html"><img src="img/escalar.png" alt=""></a>
+            
+          </div>
+        </div>
+
         </div>
 
     <script src="index.js"></script>

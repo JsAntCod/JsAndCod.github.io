@@ -104,7 +104,6 @@ addVector.addEventListener('click', ()=>{
   }
 })
 
-let gridActivo = 0;
 
 function showgrid(){
   ctx.beginPath();

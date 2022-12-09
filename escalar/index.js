@@ -46,17 +46,13 @@ let ayValue;
 let bxValue;
 let byValue;
 let magRValue = 0;
-//let angValue = 0;
+let angValue = 0;
 let rxValue = 0;
 let ryValue= 0;
 
 
 escalarA.innerHTML = escalarAValue;
 escalarB.innerHTML = escalarAValue;
-angA.innerHTML = angAValue;
-angB.innerHTML = angBValue;
-tdMag.innerHTML =aMag;
-tdang.innerHTML = Math.trunc(angAValue + angAValue); 
 
 
 
@@ -141,7 +137,9 @@ function showgrid(){
           ctx.stroke()   
       
           ctx.font = "12px Arial";
-          ctx.fillText("Resultante",(this.tox/2)+20, this.toy + 20);
+          ctx.fillStyle = 'red'
+          ctx.fontS
+          ctx.fillText("R",(this.tox/2), (this.toy/2) + 20);
         }
       });
 
@@ -153,6 +151,16 @@ grid.addEventListener('click',()=>{
 
 
 resultante.addEventListener('click',()=>{
+    if(gridState===true){
+        gridState=false
+        showgrid()
+        }
+    rxValue = axValue+bxValue;
+        ryValue = (-ayValue)+ (-byValue);
+        magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+        tdMag.innerHTML = magValue;
+        tdax.innerHTML = Math.trunc(axValue+ bxValue);
+        tday.innerHTML = -(Math.trunc((-ayValue) + (-byValue)))
     mVectoR = vector3(0,0,axValue + bxValue,(-byValue));
     mVectoR.draw();
     resultanteState= true;
@@ -164,14 +172,19 @@ escalarAPlus.addEventListener('click',()=>{
         aMag = 50*escalarAValue
         axValue = aMag*(Math.cos(angAValue * ((Math.PI)/180)));
         ayValue = aMag*(Math.sin(angAValue * ((Math.PI)/180)));
-
-        tdMag.innerHTML =aMag;
-        tdang.innerHTML = Math.trunc(angAValue + angAValue); 
+        rxValue = axValue+bxValue;
+        ryValue = (-ayValue)+ (-byValue);
+        magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+        tdMag.innerHTML = magValue;
         tdax.innerHTML = Math.trunc(axValue+ bxValue);
         tday.innerHTML = -(Math.trunc((-ayValue) + (-byValue)))
 
 
         update();
+        if(gridState===true){
+            gridState=false
+            showgrid()
+            }
         ctx.beginPath();
         mVecto1 = vector1(0,0,axValue,-ayValue);
         mVecto1.draw();
@@ -186,6 +199,10 @@ escalarAPlus.addEventListener('click',()=>{
         ayValue = aMag*(Math.sin(angAValue * ((Math.PI)/180)));
 
         update()
+        if(gridState===true){
+            gridState=false
+            showgrid()
+            }
         ctx.beginPath()
         mVecto1 = vector1(0,0,axValue,-ayValue)
         mVecto1.draw();
@@ -204,11 +221,19 @@ escalarAMinus.addEventListener('click',()=>{
         aMag = 50*escalarAValue
         axValue = aMag*(Math.cos(angAValue * ((Math.PI)/180)));
         ayValue = aMag*(Math.sin(angAValue * ((Math.PI)/180)));
-        tdMag.innerHTML =aMag;
-        tdang.innerHTML = Math.trunc(angAValue + angAValue); 
+        
+        rxValue = axValue+bxValue;
+        ryValue = (-ayValue)+ (-byValue);
+        magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+        tdMag.innerHTML = magValue;
         tdax.innerHTML = Math.trunc(axValue+ bxValue);
         tday.innerHTML = -(Math.trunc((-ayValue) + (-byValue)))
+
         update();
+        if(gridState===true){
+            gridState=false
+            showgrid()
+            }
         ctx.beginPath();
         mVecto1 = vector1(0,0,axValue,-ayValue);
         mVecto1.draw();
@@ -223,6 +248,10 @@ escalarAMinus.addEventListener('click',()=>{
         ayValue = aMag*(Math.sin(angAValue * ((Math.PI)/180)));
 
         update()
+        if(gridState===true){
+            gridState=false
+            showgrid()
+            }
         ctx.beginPath()
         mVecto1 = vector1(0,0,axValue,-ayValue)
         mVecto1.draw();
@@ -241,11 +270,17 @@ escalarBPlus.addEventListener('click',()=>{
         bMag =50*escalarBValue;
         bxValue = bMag*(Math.cos(angBValue * ((Math.PI)/180)));
         byValue = bMag*(Math.sin(angBValue * ((Math.PI)/180)));
-        tdMag.innerHTML =aMag;
-        tdang.innerHTML = Math.trunc(angAValue + angAValue); 
+        rxValue = axValue+bxValue;
+        ryValue = (-ayValue)+ (-byValue);
+        magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+        tdMag.innerHTML = magValue;
         tdax.innerHTML = Math.trunc(axValue+ bxValue);
         tday.innerHTML = -(Math.trunc((-ayValue) + (-byValue)))
         update();
+        if(gridState===true){
+            gridState=false
+            showgrid()
+            }
         ctx.beginPath();
         mVecto1 = vector1(0,0,axValue,-ayValue);
         mVecto1.draw();
@@ -280,12 +315,17 @@ escalarBMinus.addEventListener('click',()=>{
         byValue = bMag*(Math.sin(angBValue * ((Math.PI)/180)));
         axValue = aMag*(Math.cos(angAValue * ((Math.PI)/180)));
         ayValue = aMag*(Math.sin(angAValue * ((Math.PI)/180)));
-         tdMag.innerHTML =aMag;
-        tdang.innerHTML = Math.trunc(angAValue + angAValue); 
+        rxValue = axValue+bxValue;
+        ryValue = (-ayValue)+ (-byValue);
+        magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+        tdMag.innerHTML = magValue;
         tdax.innerHTML = Math.trunc(axValue+ bxValue);
         tday.innerHTML = -(Math.trunc((-ayValue) + (-byValue)))
-
         update();
+        if(gridState===true){
+            gridState=false
+            showgrid()
+            }
         ctx.beginPath();
         mVecto1 = vector1(0,0,axValue,-ayValue);
         mVecto1.draw();
@@ -301,6 +341,10 @@ escalarBMinus.addEventListener('click',()=>{
      axValue = aMag*(Math.cos(angAValue * ((Math.PI)/180)));
      ayValue = aMag*(Math.sin(angAValue * ((Math.PI)/180)));
      update()
+     if(gridState===true){
+        gridState=false
+        showgrid()
+        }
         ctx.beginPath()
         mVecto1 = vector1(0,0,axValue,-ayValue)
         mVecto1.draw();
@@ -319,17 +363,27 @@ angAPlus.addEventListener('click',()=>{
         ayValue = aMag*(Math.sin(angAValue * ((Math.PI)/180)));
         
         update()
+        if(gridState===true){
+            gridState=false
+            showgrid()
+            }
         ctx.beginPath()
         mVecto1 = vector1(0,0,axValue,-ayValue)
         mVecto1.draw();
         mVecto2 = vector2(axValue,(-ayValue),axValue + bxValue,(-byValue))
         mVecto2.draw()
         if(resultanteState===true){
-            tdMag.innerHTML =aMag;
-            tdang.innerHTML = Math.trunc(angAValue + angAValue); 
+            rxValue = axValue+bxValue;
+            ryValue = (-ayValue)+ (-byValue);
+            magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+            tdMag.innerHTML = magValue;
             tdax.innerHTML = Math.trunc(axValue+ bxValue);
             tday.innerHTML = -(Math.trunc((-ayValue) + (-byValue)))
         update();
+        if(gridState===true){
+            gridState=false
+            showgrid()
+            }
         ctx.beginPath();
         mVecto1 = vector1(0,0,axValue,-ayValue);
         mVecto1.draw();
@@ -351,11 +405,18 @@ angAMinus.addEventListener('click',()=>{
         aMag = 50*escalarAValue
         axValue = aMag*(Math.cos(angAValue * ((Math.PI)/180)));
         ayValue = aMag*(Math.sin(angAValue * ((Math.PI)/180)));
-        update();
-        tdMag.innerHTML =aMag;
-        tdang.innerHTML = Math.trunc(angAValue + angAValue); 
+
+        rxValue = axValue+bxValue;
+        ryValue = (-ayValue)+ (-byValue);
+        magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+        tdMag.innerHTML = magValue;
         tdax.innerHTML = Math.trunc(axValue+ bxValue);
         tday.innerHTML = -(Math.trunc((-ayValue) + (-byValue)))
+        update();
+        if(gridState===true){
+            gridState=false
+            showgrid()
+            }
         ctx.beginPath();
         mVecto1 = vector1(0,0,axValue,-ayValue);
         mVecto1.draw();
@@ -369,6 +430,10 @@ angAMinus.addEventListener('click',()=>{
         axValue = aMag*(Math.cos(angAValue * ((Math.PI)/180)));
         ayValue = aMag*(Math.sin(angAValue * ((Math.PI)/180)));
         update()
+        if(gridState===true){
+            gridState=false
+            showgrid()
+            }
         ctx.beginPath()
         mVecto1 = vector1(0,0,axValue,-ayValue)
         mVecto1.draw();
@@ -386,11 +451,17 @@ angBPlus.addEventListener('click',()=>{
     angBValue += 10;
     bxValue = bMag*(Math.cos(angBValue * ((Math.PI)/180)));
     byValue = bMag*(Math.sin(angBValue * ((Math.PI)/180)));
-    tdMag.innerHTML =aMag;
-    tdang.innerHTML = Math.trunc(angAValue + angAValue); 
+    rxValue = axValue+bxValue;
+    ryValue = (-ayValue)+ (-byValue);
+    magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+    tdMag.innerHTML = magValue;
     tdax.innerHTML = Math.trunc(axValue+ bxValue);
     tday.innerHTML = -(Math.trunc((-ayValue) + (-byValue)))
     update()
+    if(gridState===true){
+        gridState=false
+        showgrid()
+        }
     ctx.beginPath();
     mVecto1 = vector1(0,0,axValue,-ayValue);
     mVecto1.draw();
@@ -403,6 +474,10 @@ angBPlus.addEventListener('click',()=>{
     bxValue = bMag*(Math.cos(angBValue * ((Math.PI)/180)));
     byValue = bMag*(Math.sin(angBValue * ((Math.PI)/180)));
     update()
+    if(gridState===true){
+        gridState=false
+        showgrid()
+        }
         ctx.beginPath()
         mVecto1 = vector1(0,0,axValue,-ayValue)
         mVecto1.draw();
@@ -421,11 +496,17 @@ angBMinus.addEventListener('click',()=>{
         angBValue -= 10;
         bxValue = bMag*(Math.cos(angBValue * ((Math.PI)/180)));
         byValue = bMag*(Math.sin(angBValue * ((Math.PI)/180)));
-        tdMag.innerHTML =aMag;
-        tdang.innerHTML = Math.trunc(angAValue + angAValue); 
+        rxValue = axValue+bxValue;
+        ryValue = (-ayValue)+ (-byValue);
+        magValue = Math.trunc(Math.sqrt(((rxValue**2)+(ryValue**2))))
+        tdMag.innerHTML = magValue;
         tdax.innerHTML = Math.trunc(axValue+ bxValue);
         tday.innerHTML = -(Math.trunc((-ayValue) + (-byValue)))
         update()
+        if(gridState===true){
+            gridState=false
+            showgrid()
+            }
         ctx.beginPath()
         mVecto1 = vector1(0,0,axValue,-ayValue)
         mVecto1.draw();
@@ -438,6 +519,10 @@ angBMinus.addEventListener('click',()=>{
         bxValue = bMag*(Math.cos(angBValue * ((Math.PI)/180)));
         byValue = bMag*(Math.sin(angBValue * ((Math.PI)/180)));
         update()
+        if(gridState===true){
+            gridState=false
+            showgrid()
+            }
         ctx.beginPath()
         mVecto1 = vector1(0,0,axValue,-ayValue)
         mVecto1.draw();

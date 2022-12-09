@@ -23,7 +23,7 @@
 
           <div class="col-md-4" >
 
-            <button type="button" class="btn btn-outline-primary new-margin" id="add-vector">Agregar Vector</button>
+            <button type="button" class="btn btn-outline-primary new-margin invisible">Agregar Vector</button>
             <div class="row">
               <div class="btn-group new-margin">
                 <a href="../index.html" class="btn btn-outline-primary" aria-current="page">a + b</a>
@@ -32,42 +32,60 @@
               </div>
             </div>
             
-            <div id="buttons" class="new-margin">
+            <div class="new-margin">
                 <input class="form-check-input" type="checkbox" value="" id="show-grid">
-                <label class="form-check-label" for="flexCheckIndeterminate" id="label">
+                <label class="form-check-label" for="flexCheckIndeterminate">
                   Plano cartesiano
                 </label>
             </div>
             <div>
-              <input class="form-check-input" type="checkbox" value="" id="restar">
-              <label class="form-check-label" for="flexCheckIndeterminate" id="label">
+              <input class="form-check-input" type="checkbox" value="" id="suma">
+              <label class="form-check-label" for="flexCheckIndeterminate">
                 Vector resultante
               </label>
-          </div>
+            </div>
             
 
 
             <div class="container text-center new-margin">
               <div class="row row-cols-2">
-                <div class="col bg-primary.bg-gradient" id="ax-plus">+</div>
-                <div class="col" id="ay-plus">+</div>
-                <div class="col">|A|:<h6 id="am"></h6></div>
-                <div class="col">θ<sub>A</sub>: <h6 id="ay"></h6></div>
-                <div class="col" id="ax-minus">-</div>
-                <div class="col" id="ay-minus">-</div>
+                <div class="col bg-primary.bg-gradient" id="e-a-plus">+</div>
+                <div class="col" id="ang-a-plus">+</div>
+                <div class="col"><h5 id="e-a-valor"> </h5>   A</div>
+                <div class="col">θ<sub>A</sub>: <h6 id="ang-a-valor"></h6></div>
+                <div class="col" id="e-a-minus">-</div>
+                <div class="col" id="ang-a-minus">-</div>
               </div>
             </div>
 
             <div class="container text-center new-margin">
               <div class="row row-cols-2">
-                <div class="col" id="bx-plus">+</div>
-                <div class="col" id="by-plus">+</div>
-                <div class="col">|B|: <h6 id="bx"></h6></div>
-                <div class="col">θ<sub>B</sub>: <h6 id="by"></h6></div>
-                <div class="col" id="bx-minus">-</div>
-                <div class="col" id="by-minus">-</div>
+                <div class="col" id="e-b-plus">+</div>
+                <div class="col" id="ang-b-plus">+</div>
+                <div class="col"><h5 id="e-b-valor"> </h5>   B </div>
+                <div class="col">θ<sub>B</sub>: <h6 id="ang-b-valor"></h6></div>
+                <div class="col" id="e-b-minus">-</div>
+                <div class="col" id="ang-b-minus">-</div>
               </div>
             </div>
+
+            <table class="table new-margin">
+            
+              <thead>
+                <tr>
+                  <th scope="col">| R |</th>
+                  <th scope="col">θ </th>
+                  <th scope="col">R<sub>x</sub></th>
+                  <th scope="col">R<sub>y</sub></th>
+                </tr>
+              </thead>
+              <tbody>
+                <td id="mag-r"></td>
+                <td id="ang-r"></td>
+                <td id="rx"></td>
+                <td id="ry"></td>
+              </tbody>
+            </table>
 
           </div>
         
